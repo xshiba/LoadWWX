@@ -1,3 +1,28 @@
+if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+
+repeat wait() until game.Players
+repeat wait() until game.Players.LocalPlayer
+
+local players = game:GetService("Players")
+
+
+local camera = workspace.CurrentCamera
+
+local client = players and players.LocalPlayer
+if client.Team == nil then
+    repeat task.wait()
+        pcall(function()
+            if _G.Team == "Pirate" then
+                game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("SetTeam","Pirates") 
+            elseif _G.Team == "Marine" then
+                game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("SetTeam","Marines") 
+            else
+                game:GetService('ReplicatedStorage').Remotes.CommF_:InvokeServer("SetTeam","Pirates") 
+            end
+        end)
+    until game.Players.LocalPlayer.Team ~= nil
+end
+
 local plr = game.Players.LocalPlayer
 local CommF_ = game:GetService("ReplicatedStorage").Remotes.CommF_
 
