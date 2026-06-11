@@ -71,16 +71,7 @@ local function BuyDragonTalon()
         task.wait(0.5)
     end
 
-    local check = CommF_:InvokeServer("BuyDragonTalon", true)
-
-    if check == false or typeof(check) == "string" or check == 3 then
-        return
-    end
-
-    if check ~= 1 then
-        local result = CommF_:InvokeServer("BuyDragonTalon")
-        if result == 0 or result == 3 then return end
-    end
+    local result = CommF_:InvokeServer("BuyDragonTalon")
 
     task.wait(1)
 
